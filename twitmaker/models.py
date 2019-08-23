@@ -5,4 +5,4 @@ class Tweet(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "Tweet {}: {}".format(self.pk, self.message)
+        return f"Tweet {self.pk}: {self.message}"
