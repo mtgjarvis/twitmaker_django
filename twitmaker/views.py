@@ -4,9 +4,10 @@ from twitmaker.models import Tweet
 from twitmaker.forms import TweetForm
 
 def index(request):
-    tweets = Tweet.objects.all()
-    context = {'tweets': tweets, 'form': TweetForm()}
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', {
+        'tweets': Tweet.objects.all(), 
+        'form': TweetForm()
+    })
 
 
 def create_tweet(request):
@@ -16,5 +17,7 @@ def create_tweet(request):
         form.save()
         return HttpResponseRedirect('/')
     else:
-        context = {'tweets': Tweet.objects.all(), 'form': form}
-        return render(request, 'index.html', context)
+        return render(request, 'index.html', {
+            'tweets': Tweet.objects.all(), 
+            'form': form
+        })
